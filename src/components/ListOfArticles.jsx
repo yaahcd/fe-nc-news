@@ -17,7 +17,6 @@ function ListOfArticles() {
 				setIsLoading(false);
 			})
 			.catch((err) => {
-				setArticlesList([]);
 				setError(err);
 				setIsLoading(false);
 			});
@@ -25,9 +24,9 @@ function ListOfArticles() {
 
 	if (error) {
 		return (
-			<div className="errorMessage">
-				<h1>{JSON.stringify(error.message)}</h1>
-			</div>
+			<section className="errorMessage">
+				<p>{JSON.stringify(error.message)}</p>
+			</section>
 		);
 	}
 
@@ -36,11 +35,11 @@ function ListOfArticles() {
 	}
 
 	return (
-		<div className="articlesList">
+		<main className="articlesList">
 			{articlesList.map((article) => {
 				return <Article key={article.article_id} article={article} />;
 			})}
-		</div>
+		</main>
 	);
 }
 

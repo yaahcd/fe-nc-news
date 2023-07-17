@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { getArticlesById } from '../api';
-import Loading from '../components/Loading';
+import Loading from './Loading';
 
 function SingleArticle() {
 	const params = useParams();
@@ -11,13 +11,12 @@ function SingleArticle() {
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		getArticlesById(params.article_idh)
+		getArticlesById(params.article_id)
 			.then((article) => {
-				setArticle(...article);
+				setArticle(article[0]);
 				setIsLoading(false);
 			})
 			.catch((err) => {
-				setArticle([]);
 				setError(err);
 				setIsLoading(false);
 			});
@@ -26,9 +25,9 @@ function SingleArticle() {
   
   if (error) {
 		return (
-			<div className="errorMessage">
-				<h1>Something went wrong: could not load article.</h1>
-			</div>
+			<section className="errorMessage">
+				<p>Something went wrong: could not load article.</p>
+			</section>
 		);
 	}
 
@@ -36,12 +35,12 @@ function SingleArticle() {
 		return <Loading />;
 	}
 	return (
-		<div className="articlePageContainer">
+		<main className="articlePageContainer">
 			<h2>{article.title}</h2>
 			<h3>Written by {article.author}</h3>
 			<img src={article.article_img_url} alt="" />
 			<p>{article.body}</p>
-		</div>
+		</main>
 	);
 }
 
