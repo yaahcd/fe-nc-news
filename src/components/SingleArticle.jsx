@@ -35,12 +35,12 @@ function SingleArticle() {
 		return <Loading />;
 	}
 	return (
-		<main className="articlePageContainer">
+		<ul className="articlePageContainer">
 			<h2>{article.title}</h2>
 			<h3>Written by {article.author}</h3>
 			<img src={article.article_img_url} alt="" />
 			<p>{article.body}</p>
-		</main>
+		</ul>
 	);
 }
 

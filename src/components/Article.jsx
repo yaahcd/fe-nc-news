@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Article({ article }) {
 
 	return (
-		<main className="articleItem">
+		<li className="articleItem">
 			<Link to={`/articles/${article.article_id}`}>
 			<img
 				className="articleImg"
@@ -17,7 +17,7 @@ function Article({ article }) {
 			<h4>{article.author}</h4>
 			<p className="articleCommentCount">Comments: {article.comment_count}</p>
 			<p className="votes">Votes: {article.votes}</p>
-		</main>
+		</li>
 	);
 }
 
