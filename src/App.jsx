@@ -1,17 +1,18 @@
 import './App.css'
-import {BlogProvider }from './contexts/BlogContext'
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home'
+import Home from './pages/Home'
+import Navbar from './components/Navbar'
 
 function App() {
 
 
   return (
-    <BlogProvider>
-      <Home />
+      <>
      <Routes>
+      <Route path='/' element={<Home />} />
      </Routes>
-    </BlogProvider>
+     <Navbar />
+     </>
   )
 }
 
