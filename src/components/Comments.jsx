@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react';
 import { getCommentsByArticleId } from '../api';
+import Loading from './Loading';
 
-function Comments({id}) {
-
-  const [comments, setComments] = useState([])
+function Comments({ id }) {
+	const [comments, setComments] = useState([]);
 	const [error, setError] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getCommentsByArticleId(id).then(({commentList}) => {
-      setComments(commentList)
-    })
-    .catch((err) => {
-      setArticle([]);
-     setError(err)
-    });
-  }, [])
+	useEffect(() => {
+		getCommentsByArticleId(id)
+			.then(({ commentList }) => {
+				setComments(commentList);
+				setIsLoading(false);
+			})
+			.catch((err) => {
+				setError(err);
+				setIsLoading(false);
+			});
+	}, []);
 
-  if (error) {
+	if (error) {
 		return (
 			<section className="errorMessage">
 				<p>{JSON.stringify(error.message)}</p>
@@ -24,18 +27,23 @@ function Comments({id}) {
 		);
 	}
 
-  return (
-    <section className='commentList'>
-     {
-      comments.map((comment) => {
-        return <div className='commentItem'>
-              <p>{comment.author}: {comment.body}</p>
-              <p>Votes: {comment.votes}</p>
-              </div>
-      })
-     }
-    </section>
-  )
+	if (isLoading) {
+		return <Loading />;
+	}
+	return (
+		<ul className="commentList">
+			{comments.map((comment) => {
+				return (
+					<li className="commentItem">
+						<p>
+							{comment.author}: {comment.body}
+						</p>
+						<p>Votes: {comment.votes}</p>
+					</li>
+				);
+			})}
+		</ul>
+	);
 }
 
-export default Comments
+export default Comments;
