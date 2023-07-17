@@ -7,9 +7,8 @@ import Loading from './Loading';
 function ListOfArticles() {
 
 	const [articlesList, setArticlesList] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(false)
-
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
 		getArticles()

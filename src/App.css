@@ -103,3 +103,16 @@ body {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
+
+.articlePageContainer {
+  padding-top: 70px;
+  text-align: center;
+}
+
+.articlePageContainer img, h2, h3, p {
+  padding: 10px;
+}
+
+.articlePageContainer img {
+  width: 400px;
+}

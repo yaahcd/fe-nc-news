@@ -1,16 +1,13 @@
 import ListOfArticles from "../components/ListOfArticles";
 
-function Home() {
-	return (
-		<>
-		<div className="headerContainer">
-			<h1 className="header"> NC News</h1>
-		</div>
 
+
+function Home() {
+	
+	return (
 		<section className="articlesContainer">
 			<ListOfArticles />
 		</section>
-		</>
 	);
 }
 

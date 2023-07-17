@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router";
+
 function Article({ article }) {
+
+	const navigate = useNavigate();
+
 	return (
 		<div className="articleItem">
-			<img
+			<img onClick={() => navigate(`/articles/${article.article_id}`)}
 				className="articleImg"
 				src={article.article_img_url}
 				alt={`Image for ${article.name}`}
