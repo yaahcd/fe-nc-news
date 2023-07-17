@@ -1,18 +1,15 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { getArticles } from '../api';
 import Article from './Article';
 import Loading from './Loading';
-import BlogContext from '../contexts/BlogContext';
+
 
 function ListOfArticles() {
-	const {
-		articlesList,
-		setArticlesList,
-		isLoading,
-		error,
-		setIsLoading,
-		setError,
-	} = useContext(BlogContext);
+
+	const [articlesList, setArticlesList] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
+
 
 	useEffect(() => {
 		getArticles()
