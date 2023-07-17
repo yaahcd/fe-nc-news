@@ -69,6 +69,7 @@ body {
 .articlesList {
   text-align: center;
   align-items: center;
+  list-style-type: none;
 }
 
 .articleImg {
@@ -118,4 +119,23 @@ body {
 
 .errorMessage{
   padding-top: 60px;
+}
+
+.commentList {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding-bottom: 70px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 80%vw;
+  overflow: auto;
+}
+
+.commentList p {
+  padding: 1px;
+}
+
+.commentItem {
+  padding: 10px;
 }

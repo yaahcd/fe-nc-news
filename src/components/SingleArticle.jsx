@@ -2,6 +2,7 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { getArticlesById } from '../api';
 import Loading from './Loading';
+import Comments from './Comments';
 
 function SingleArticle() {
 	const params = useParams();
@@ -35,12 +36,20 @@ function SingleArticle() {
 		return <Loading />;
 	}
 	return (
+		<>
 		<ul className="articlePageContainer">
 			<h2>{article.title}</h2>
 			<h3>Written by {article.author}</h3>
 			<img src={article.article_img_url} alt="" />
 			<p>{article.body}</p>
 		</ul>
+
+		<section className='commentsContainer'>
+		<p className='commentsCount'>Comments: {article.comment_count}</p>
+		<p className='votesCount'>Votes: {article.votes}</p>
+		<Comments id={article.article_id} />
+		</section>
+		</>
 	);
 }
 

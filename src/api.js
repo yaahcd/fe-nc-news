@@ -10,9 +10,14 @@ export const getArticles = () => {
 	});
 };
 
-
 export const getArticlesById = (id) => {
 	return BaseUrl.get(`/api/articles/${id}`).then((res) => {
+		return res.data;
+	});
+};
+
+export const getCommentsByArticleId = (id) => {
+	return BaseUrl.get(`/api/articles/${id}/comments`).then((res) => {
 		return res.data;
 	});
 };
