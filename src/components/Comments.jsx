@@ -16,8 +16,16 @@ function Comments({id}) {
     });
   }, [])
 
+  if (error) {
+		return (
+			<section className="errorMessage">
+				<p>{JSON.stringify(error.message)}</p>
+			</section>
+		);
+	}
+
   return (
-    <div className='commentList'>
+    <section className='commentList'>
      {
       comments.map((comment) => {
         return <div className='commentItem'>
@@ -26,7 +34,7 @@ function Comments({id}) {
               </div>
       })
      }
-    </div>
+    </section>
   )
 }
 
