@@ -12,8 +12,7 @@ body {
 }
 
 .headerContainer {
-  position: fixed;
- width: 100vw;
+  width: 100vw;
   height: 60px;
   background-color: #ebeaea;
   display: flex;
@@ -102,4 +101,21 @@ body {
   border-color: #112d4d transparent #112d4d transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
+}
+
+.articlePageContainer {
+  padding-top: 70px;
+  text-align: center;
+}
+
+.articlePageContainer img, h2, h3, p {
+  padding: 10px;
+}
+
+.articlePageContainer img {
+  width: 400px;
+}
+
+.errorMessage{
+  padding-top: 60px;
 }
