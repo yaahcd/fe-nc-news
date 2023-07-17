@@ -116,3 +116,7 @@ body {
 .articlePageContainer img {
   width: 400px;
 }
+
+.errorMessage{
+  padding-top: 60px;
+}

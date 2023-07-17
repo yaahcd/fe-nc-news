@@ -11,17 +11,26 @@ function SingleArticle() {
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		getArticlesById(params.article_id)
+		getArticlesById(params.article_idh)
 			.then((article) => {
 				setArticle(...article);
 				setIsLoading(false);
 			})
 			.catch((err) => {
 				setArticle([]);
-				setError(true);
+				setError(err);
 				setIsLoading(false);
 			});
 	}, []);
+
+  
+  if (error) {
+		return (
+			<div className="errorMessage">
+				<h1>Something went wrong: could not load article.</h1>
+			</div>
+		);
+	}
 
 	if (isLoading) {
 		return <Loading />;
