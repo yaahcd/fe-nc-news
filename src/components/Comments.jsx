@@ -22,7 +22,7 @@ function Comments({ id }) {
 	if (error) {
 		return (
 			<section className="errorMessage">
-				<p>{JSON.stringify(error.message)}</p>
+				<p>{error.request.status}: {error.response.data.msg}</p>
 			</section>
 		);
 	}
@@ -34,7 +34,7 @@ function Comments({ id }) {
 		<ul className="commentList">
 			{comments.map((comment) => {
 				return (
-					<li className="commentItem">
+					<li className="commentItem" key={comment.comment_id}>
 						<p>
 							{comment.author}: {comment.body}
 						</p>

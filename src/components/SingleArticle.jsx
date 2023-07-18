@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import { getArticlesById } from '../api';
+import { getArticlesById, updateVotesByArticleId } from '../api';
 import Loading from './Loading';
 import Comments from './Comments';
 
@@ -10,6 +10,7 @@ function SingleArticle() {
 	const [article, setArticle] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
+	const [userVotes, setUserVotes] = useState(0)
 
 	useEffect(() => {
 		getArticlesById(params.article_id)
@@ -21,13 +22,21 @@ function SingleArticle() {
 				setError(err);
 				setIsLoading(false);
 			});
-	}, []);
+	}, [article]);
 
+	const handleClick = () => {
+		setUserVotes(userVotes + 1)
+
+		updateVotesByArticleId(params.article_id).catch((err) => {
+			setUserVotes(userVotes - 1)
+			setError(err)
+		})
+	}
   
   if (error) {
 		return (
 			<section className="errorMessage">
-				<p>Something went wrong: could not load article.</p>
+				<p>{error.request.status}: {error.response.data.msg}</p>
 			</section>
 		);
 	}
@@ -35,21 +44,24 @@ function SingleArticle() {
 	if (isLoading) {
 		return <Loading />;
 	}
-	return (
-		<>
-		<ul className="articlePageContainer">
-			<h2>{article.title}</h2>
-			<h3>Written by {article.author}</h3>
-			<img src={article.article_img_url} alt="" />
-			<p>{article.body}</p>
-		</ul>
 
-		<section className='commentsContainer'>
-		<p className='commentsCount'>Comments: {article.comment_count}</p>
-		<p className='votesCount'>Votes: {article.votes}</p>
-		<Comments id={article.article_id} />
-		</section>
-		</>
+	
+	return (
+				<>
+				<ul className="articlePageContainer">
+					<h2>{article.title}</h2>
+					<h3>Written by {article.author}</h3>
+					<img src={article.article_img_url} alt="" />
+					<p>{article.body}</p>
+				</ul>
+		
+				<section className='commentsContainer'>
+				<p className='commentsCount'>Comments: {article.comment_count}</p>
+				<p className='votesCount'>Votes: {article.votes}</p>
+				<button className='btn' onClick={handleClick} disabled={userVotes > 0}>😍</button>
+				</section>
+				<Comments id={article.article_id} />
+				</>
 	);
 }
 
