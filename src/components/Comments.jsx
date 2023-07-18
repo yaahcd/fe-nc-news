@@ -34,7 +34,7 @@ function Comments({ id }) {
 		<ul className="commentList">
 			{comments.map((comment) => {
 				return (
-					<li className="commentItem">
+					<li key={comment.comment_id} className="commentItem">
 						<p>
 							{comment.author}: {comment.body}
 						</p>
