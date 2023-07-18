@@ -22,13 +22,17 @@ function SingleArticle() {
 				setError(err);
 				setIsLoading(false);
 			});
-	}, [article]);
+	}, []);
 
 	const handleClick = () => {
-		setUserVotes(userVotes + 1)
+		setUserVotes((currValue) => {
+			return currValue + 1
+		})
 
 		updateVotesByArticleId(params.article_id).catch((err) => {
-			setUserVotes(userVotes - 1)
+			setUserVotes((currValue) => {
+				return currValue - 1
+			})
 			setError(err)
 		})
 	}
@@ -44,8 +48,6 @@ function SingleArticle() {
 	if (isLoading) {
 		return <Loading />;
 	}
-
-	
 	return (
 				<>
 				<ul className="articlePageContainer">
@@ -57,7 +59,7 @@ function SingleArticle() {
 		
 				<section className='commentsContainer'>
 				<p className='commentsCount'>Comments: {article.comment_count}</p>
-				<p className='votesCount'>Votes: {article.votes}</p>
+				<p className='votesCount'>Votes: {article.votes + userVotes}</p>
 				<button className='btn' onClick={handleClick} disabled={userVotes > 0}>😍</button>
 				</section>
 				<Comments id={article.article_id} />
