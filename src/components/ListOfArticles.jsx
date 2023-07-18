@@ -35,11 +35,11 @@ function ListOfArticles() {
 	}
 
 	return (
-		<main className="articlesList">
+		<ul className="articlesList">
 			{articlesList.map((article) => {
 				return <Article key={article.article_id} article={article} />;
 			})}
-		</main>
+		</ul>
 	);
 }
 
