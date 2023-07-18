@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import {toast} from 'react-toastify'
 import { getArticlesById, updateVotesByArticleId } from '../api';
 import Loading from './Loading';
 import Comments from './Comments';
@@ -38,11 +39,15 @@ function SingleArticle() {
 	}
   
   if (error) {
+		if(error.message === "Network Error"){
+			toast.error('No connection')
+		} else {
 		return (
 			<section className="errorMessage">
 				<p>{error.request.status}: {error.response.data.msg}</p>
 			</section>
 		);
+	}
 	}
 
 	if (isLoading) {
