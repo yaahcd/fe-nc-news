@@ -14,7 +14,7 @@ function SearchBar({setArticlesList}) {
       setTopicsList([{slug: '' }, ...topics])
       setIsLoading(false)
     }).catch((err) => {
-      setError(err);
+      setError(true);
       setIsLoading(false);
     });
   }, [])
@@ -29,6 +29,9 @@ function SearchBar({setArticlesList}) {
     getArticles(topicQuery).then(({articles}) => {
       setArticlesList(articles)
       setIsLoading(false)
+    }).catch((err) => {
+      setError(true)
+      setIsLoading(false)
     })
   }
 
@@ -42,19 +45,19 @@ function SearchBar({setArticlesList}) {
 
   if(isLoading){
     return <Loading />
+  } else {
+    return (
+      <section className="searchBar">
+         <label htmlFor="category">Topics</label>
+        <select onChange={handleChange} id='category'type="text">
+         { topicsList.map((topic) => {
+          return  <option key={topic.slug} value={topic.slug}>{topic.slug}</option>
+         })}
+        </select>
+         <button onClick={handleClick} className="btn">Send</button>
+      </section>
+    )
   }
-
-  return (
-    <section className="searchBar">
-       <label htmlFor="category">Topics</label>
-      <select onChange={handleChange} id='category'type="text">
-       { topicsList.map((topic) => {
-        return  <option key={topic.slug} value={topic.slug}>{topic.slug}</option>
-       })}
-      </select>
-       <button onClick={handleClick} className="btn">Send</button>
-    </section>
-  )
 }
 
 export default SearchBar
