@@ -139,3 +139,7 @@ body {
 .commentItem {
   padding: 10px;
 }
+
+.commentsCount, .votesCount {
+  display: inline-flex;
+}

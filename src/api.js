@@ -21,3 +21,12 @@ export const getCommentsByArticleId = (id) => {
 		return res.data;
 	});
 };
+
+export const updateVotesByArticleId = (id) => {
+	const body = {
+		"inc_votes": 1
+	}
+	return BaseUrl.patch(`/api/articles/${id}/`, body).then((res) => {
+		return res.data
+	})
+}

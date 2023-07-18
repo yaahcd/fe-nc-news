@@ -25,7 +25,7 @@ function ListOfArticles() {
 	if (error) {
 		return (
 			<section className="errorMessage">
-				<p>{JSON.stringify(error.message)}</p>
+				<p>{error.request.status}: {error.response.data.msg}</p>
 			</section>
 		);
 	}
