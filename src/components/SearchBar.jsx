@@ -10,6 +10,7 @@ function SearchBar({setArticlesList}) {
 	const [error, setError] = useState(false)
 
   useEffect(() => {
+    setError(false)
     getTopics().then((topics) => {
       setTopicsList([{slug: '' }, ...topics])
       setIsLoading(false)
@@ -17,7 +18,7 @@ function SearchBar({setArticlesList}) {
       setError(true);
       setIsLoading(false);
     });
-  }, [])
+  }, [topicsList])
 
   const handleChange = (e) => {
     setTopicQuery(e.target.value)
