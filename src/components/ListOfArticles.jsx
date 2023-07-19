@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getArticles } from '../api';
 import Article from './Article';
 import Loading from './Loading';
+import SearchBar from './SearchBar';
 
 
 function ListOfArticles() {
@@ -35,11 +36,14 @@ function ListOfArticles() {
 	}
 
 	return (
+		<>
+		<SearchBar setArticlesList={setArticlesList}/>
 		<ul className="articlesList">
-			{articlesList.map((article) => {
+			{articlesList.length === 0 ? <p>No articles on this topic.</p> : articlesList.map((article) => {
 				return <Article key={article.article_id} article={article} />;
 			})}
 		</ul>
+		</>
 	);
 }
 
