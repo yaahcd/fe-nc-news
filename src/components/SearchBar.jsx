@@ -12,6 +12,7 @@ function SearchBar({ setArticlesList }) {
 	const sortQuery = searchParams.get('sort_by');
 	const topicQuery = searchParams.get('topic');
 
+  
 	useEffect(() => {
 		setError(false);
 		getTopics()
@@ -81,7 +82,7 @@ function SearchBar({ setArticlesList }) {
 		<section className="searchBar">
 
 			<section className="topicSection">
-				<label htmlFor="topic">Topics</label>
+				<label htmlFor="topic">Topics:</label>
 				<select onChange={setTopicQuery} id="topic" type="text">
 					{topicsList.map((topic) => {
 						return (
@@ -94,7 +95,7 @@ function SearchBar({ setArticlesList }) {
 			</section>
 
 			<section className="sortBySection">
-				<label htmlFor="sort_by">Sort</label>
+				<label htmlFor="sort_by">Sort:</label>
 				<select onChange={setSortBy} id="sort_by">
 					<option value="blank"></option>
 					<option value="title">title</option>
@@ -105,7 +106,7 @@ function SearchBar({ setArticlesList }) {
 			</section>
 
 			<section className="orderSection">
-				<label htmlFor="order">Order</label>
+				<label htmlFor="order">Order:</label>
 				<select onChange={setSortOrder} id="order">
 					<option value="blank"></option>
 					<option value="ASC">Ascending</option>
@@ -113,7 +114,7 @@ function SearchBar({ setArticlesList }) {
 				</select>
 			</section>
 
-			<button onClick={handleClick} className="filter-btn">
+			<button onClick={handleClick} className="btn">
 				Filter
 			</button>
       

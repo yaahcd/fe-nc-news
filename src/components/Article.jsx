@@ -14,9 +14,9 @@ function Article({ article }) {
 			<Link to={`/articles/${article.article_id}`}>
 			<h3>{article.title}</h3>
 			</Link>
-			<h4>{article.author}</h4>
-			<p className="articleCommentCount">Comments: {article.comment_count}</p>
-			<p className="votes">Votes: {article.votes}</p>
+			<h4>Written by {article.author}</h4>
+			<p>Comments: {article.comment_count}</p>
+			<p>Votes: {article.votes}</p>
 		</li>
 	);
 }
