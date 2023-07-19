@@ -152,3 +152,16 @@ body {
 .postComment input {
   margin: 5px;
 }
+
+.searchBar {
+  display: flex;
+  padding: 10px;
+}
+
+.searchBar label {
+  margin-right: 3px;
+}
+
+.sortBySection, .orderSection, .topicSection {
+  margin-right: 9px;
+}
