@@ -4,17 +4,17 @@ const baseUrl = axios.create({
 	baseURL: 'https://newsbe.onrender.com',
 });
 
-export const getArticles = (topics) => {
-
+export const getArticles = (topics, sort, order) => {
 	const params = {
-		topic: topics || undefined
-	}
+		topic: topics || undefined,
+		sort_by: sort || undefined,
+		order: order || undefined,
+	};
 
-	return baseUrl.get('/api/articles', {params}).then((res) => {
+	return baseUrl.get('/api/articles', { params }).then((res) => {
 		return res.data;
 	});
 };
-
 export const getArticlesById = (id) => {
 	return baseUrl.get(`/api/articles/${id}`).then((res) => {
 		return res.data;
