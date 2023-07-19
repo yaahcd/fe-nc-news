@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
-import { getCommentsByArticleId, postCommentsByArticleId } from '../api';
+import { getCommentsByArticleId, postCommentsByArticleId, deleteComment } from '../api';
 import Loading from './Loading';
+import BlogContext from '../contexts/BlogContext'
 
 function Comments({ id }) {
 	const [comments, setComments] = useState([]);
@@ -12,8 +13,10 @@ function Comments({ id }) {
     "body": ''
   })
   const [postConfirmation, setPostConfirmation] = useState(false)
+	const {user} = useContext(BlogContext)
 
 	useEffect(() => {
+		setError(false)
 		getCommentsByArticleId(id)
 			.then(({ commentList }) => {
 				setComments(commentList);
@@ -23,19 +26,28 @@ function Comments({ id }) {
 				setError(err);
 				setIsLoading(false);
 			});
-	}, []);
+	}, [comments]);
 
 	const handleSubmit = (e) => {
     e.preventDefault();
 
     postCommentsByArticleId(id, newComment).then((addedComment) => {
-			console.log(addedComment)
       setComments([addedComment[0], ...comments])
       setPostConfirmation(true)
     }).catch((err) => {
       setError(err)
     })
   }
+
+	const handleClick = (e) => {
+		
+		const id = e.target.dataset.set
+		setIsLoading(true)
+		deleteComment(id).then(() => {
+		
+			setIsLoading(false)
+		})
+	}
 
 	if (error) {
 		if (error.message === 'Network Error') {
@@ -64,6 +76,7 @@ function Comments({ id }) {
 							{comment.author}: {comment.body}
 						</p>
 						<p>Votes: {comment.votes}</p>
+						{ user === comment.author ? <button data-set={comment.comment_id} onClick={handleClick}>delete</button> : null }
 					</li>
 				);
 			})}

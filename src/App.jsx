@@ -6,10 +6,11 @@ import SingleArticle from './components/SingleArticle';
 import ListOfArticles from './components/ListOfArticles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BlogProvider } from './contexts/BlogContext';
 
 function App() {
 	return (
-		<>
+		<BlogProvider>
 			<Header />
 			<Routes>
 				<Route path="/" element={<ListOfArticles />} />
@@ -17,7 +18,7 @@ function App() {
 			</Routes>
 			<Navbar />
 			<ToastContainer />
-		</>
+		</BlogProvider>
 	);
 }
 

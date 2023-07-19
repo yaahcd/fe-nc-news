@@ -52,3 +52,9 @@ export const getTopics = () => {
 		return res.data
 	})
 }
+
+export const deleteComment = (id) => {
+	return baseUrl.delete(`/api/comments/${id}`).then((res) => {
+		return
+	})
+}
