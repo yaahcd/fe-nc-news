@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getArticles, getTopics } from '../api';
-import { useSearchParams } from 'react-router-dom';
 import Loading from './Loading';
 
 function SearchBar({ setArticlesList }) {
 	const [topicsList, setTopicsList] = useState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
-	const [searchParams, setSearchParams] = useSearchParams();
-	const orderQuery = searchParams.get('order');
-	const sortQuery = searchParams.get('sort_by');
-	const topicQuery = searchParams.get('topic');
 
 	useEffect(() => {
 		setError(false);
@@ -25,34 +20,15 @@ function SearchBar({ setArticlesList }) {
 			});
 	}, []);
 
-	const setSortOrder = (e) => {
-		const direction = e.target.value;
-
-		const newParams = new URLSearchParams(searchParams);
-		newParams.set('order', direction);
-		setSearchParams(newParams);
-	};
-
-	const setSortBy = (e) => {
-		const type = e.target.value;
-
-		const newParams2 = new URLSearchParams(searchParams);
-		newParams2.set('sort_by', type);
-		setSearchParams(newParams2);
-	};
-
-	const setTopicQuery = (e) => {
-		const topic = e.target.value;
-
-		const newParams3 = new URLSearchParams(searchParams);
-		newParams3.set('topic', topic);
-		setSearchParams(newParams3);
-	};
-
 	const handleSubmit = (e) => {
+		
 		e.preventDefault();
 
-		getArticles(topicQuery, sortQuery, orderQuery)
+		let topic = e.target[0].value 
+		let sortby =  e.target[1].value
+		let order = e.target[2].value
+
+		getArticles(topic, sortby, order)
 			.then(({ articles }) => {
 				setArticlesList(articles);
 				setIsLoading(false);
@@ -64,12 +40,8 @@ function SearchBar({ setArticlesList }) {
 	};
 
 	if (error) {
-		return (
-			<section className="errorMessage">
-				<p>
-					{error.request.status}: {error.response.data.msg}
-				</p>
-			</section>
+		return (			
+				<p className="errorMessage">Something went wrong. Please try again.</p>
 		);
 	}
 
@@ -80,8 +52,8 @@ function SearchBar({ setArticlesList }) {
 	return (
 		<form onSubmit={handleSubmit} className="searchBar">
 			<section className="topicSection">
-				<label htmlFor="topic">Topics:</label>
-				<select onChange={setTopicQuery} id="topic" type="text">
+				<label htmlFor="">Topics:</label>
+				<select id="topic" type="text">
 					{topicsList.map((topic) => {
 						return (
 							<option key={topic.slug} value={topic.slug}>
@@ -94,8 +66,8 @@ function SearchBar({ setArticlesList }) {
 
 			<section className="sortBySection">
 				<label htmlFor="sort_by">Sort:</label>
-				<select onChange={setSortBy} id="sort_by">
-					<option value="blank"></option>
+				<select id="sort_by">
+					<option value=""></option>
 					<option value="title">title</option>
 					<option value="author">author</option>
 					<option value="created_at">date</option>
@@ -105,8 +77,8 @@ function SearchBar({ setArticlesList }) {
 
 			<section className="orderSection">
 				<label htmlFor="order">Order:</label>
-				<select onChange={setSortOrder} id="order">
-					<option value="blank"></option>
+				<select id="order">
+					<option value=""></option>
 					<option value="ASC">Ascending</option>
 					<option value="DESC">Descending</option>
 				</select>
