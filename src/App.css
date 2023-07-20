@@ -279,6 +279,9 @@ padding: 0;
   height: 300px;
 }
 
+.userContainer button {
+  margin: 10px;
+}
 
 /* Mobile */
 

@@ -18,7 +18,7 @@ function SignIn() {
     getUserByUsername(username).then((user) => {
         setIsLoading(true)
         setUser(user[0].username)
-        localStorage.setItem('user', user[0].username)
+        window.localStorage.setItem('user', user[0].username)
         navigate('/my_account')
       
     }).catch((err) => {

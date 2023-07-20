@@ -54,17 +54,17 @@ function Comments({ id }) {
 		deleteComment(id).then(() => {
 			setDeleteConfirmation(true)
 			setIsLoading(false);
-		});
+			toast.success('Your comment has been deleted')
+		}).catch((err) => {
+			setError(true)
+			setIsLoading(false)
+		})
 	};
 
 	if (error) {
-		if (error.message === 'Network Error') {
-			toast.error('No connection');
-		} else {
 			return (
 				<p className="errorMessage">Something went wrong. Please try again.</p>
 			);
-		}
 	}
 
 	if (isLoading) {
