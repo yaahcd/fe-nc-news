@@ -12,7 +12,6 @@ function SearchBar({ setArticlesList }) {
 	const sortQuery = searchParams.get('sort_by');
 	const topicQuery = searchParams.get('topic');
 
-  
 	useEffect(() => {
 		setError(false);
 		getTopics()
@@ -50,7 +49,7 @@ function SearchBar({ setArticlesList }) {
 		setSearchParams(newParams3);
 	};
 
-	const handleClick = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		getArticles(topicQuery, sortQuery, orderQuery)
@@ -79,8 +78,7 @@ function SearchBar({ setArticlesList }) {
 	}
 
 	return (
-		<section className="searchBar">
-
+		<form onSubmit={handleSubmit} className="searchBar">
 			<section className="topicSection">
 				<label htmlFor="topic">Topics:</label>
 				<select onChange={setTopicQuery} id="topic" type="text">
@@ -114,11 +112,8 @@ function SearchBar({ setArticlesList }) {
 				</select>
 			</section>
 
-			<button onClick={handleClick} className="btn">
-				Filter
-			</button>
-      
-		</section>
+			<button className="btn">Filter</button>
+		</form>
 	);
 }
 

@@ -55,7 +55,7 @@ function Comments({ id }) {
 		return <Loading />;
 	}
 	return (
-		<>
+		<main className='commentSection'>
 		<ul className="commentList" >
 			{comments.map((comment) => {
 				return (
@@ -84,7 +84,7 @@ function Comments({ id }) {
 		</form>
 		{postConfirmation ? <p>Your comment has been posted.</p> : null}
 	</section>
-	</>
+	</main>
 	);
 }
 
