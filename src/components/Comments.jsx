@@ -55,15 +55,15 @@ function Comments({ id }) {
 		return <Loading />;
 	}
 	return (
-		<>
+		<main className='commentSection'>
 		<ul className="commentList" >
 			{comments.map((comment) => {
 				return (
-					<li className="commentItem" key={Math.random()}>
+					<li className="commentItem" key={comment.comment_id}>
 						<p>
-							{comment.author}: {comment.body}
+							<span className='differentColor'>{comment.author}:</span> {comment.body}
 						</p>
-						<p>Votes: {comment.votes}</p>
+						<p><span className='differentColor'>Votes:</span> {comment.votes}</p>
 					</li>
 				);
 			})}
@@ -84,7 +84,7 @@ function Comments({ id }) {
 		</form>
 		{postConfirmation ? <p>Your comment has been posted.</p> : null}
 	</section>
-	</>
+	</main>
 	);
 }
 

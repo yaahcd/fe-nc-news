@@ -2,24 +2,25 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
 	return (
-		<footer className="navbar">
-			<nav className="navbarNav">
-				<ul className="navbarList">
+		<>
+			<nav className="navbar">
+			<h1 className="header"> NC News</h1>
+				<ul>
 					<Link to="/">
-						<li className="navbarItem">Home</li>
+						<li>Home</li>
 					</Link>
 					<Link to="/">
-						<li className="navbarItem">New Article</li>
+						<li>New Article</li>
 					</Link>
 					<Link to="/">
-						<li className="navbarItem">Users</li>
+						<li>Users</li>
 					</Link>
 					<Link to="/">
-						<li className="navbarItem">My Account</li>
+						<li>My Account</li>
 					</Link>
 				</ul>
 			</nav>
-		</footer>
+			</>
 	);
 }
 

@@ -65,7 +65,7 @@ function SingleArticle() {
 				<section className='commentsContainer'>
 				<p className='commentsCount'>Comments: {article.comment_count}</p>
 				<p className='votesCount'>Votes: {article.votes + userVotes}</p>
-				<button className='btn' onClick={handleClick} disabled={userVotes > 0}>😍</button>
+				<button className='btn' onClick={handleClick} disabled={userVotes > 0}>Vote 😍</button>
 				</section>
 				<Comments id={article.article_id} />
 				</>
