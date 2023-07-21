@@ -26,7 +26,7 @@ function MyAccount() {
 
 	const handleClick = () => {
 		setUser(null);
-    window.localStorage.clear();
+		window.localStorage.clear();
 		navigate('/');
 	};
 
@@ -44,7 +44,14 @@ function MyAccount() {
 		<main className="userContainer">
 			<h2>Hello {userInfo.name}! 😄</h2>
 			<img src={userInfo.avatar_url} alt="" />
-			<button onClick={() => {navigate('/')}} className="btn">Go to articles</button>
+			<button
+				onClick={() => {
+					navigate('/');
+				}}
+				className="btn"
+			>
+				Go to articles
+			</button>
 			<button onClick={handleClick} className="btn">
 				Logout
 			</button>

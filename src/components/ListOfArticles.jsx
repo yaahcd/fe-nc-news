@@ -4,12 +4,10 @@ import Article from './Article';
 import Loading from './Loading';
 import SearchBar from './SearchBar';
 
-
 function ListOfArticles() {
-
-	const [articlesList, setArticlesList] = useState([])
-	const [isLoading, setIsLoading] = useState(true)
-	const [error, setError] = useState(false)
+	const [articlesList, setArticlesList] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		getArticles()
@@ -25,9 +23,7 @@ function ListOfArticles() {
 
 	if (error) {
 		return (
-			<section className="errorMessage">
-				<p>{error.request.status}: {error.response.data.msg}</p>
-			</section>
+			<p className="errorMessage"> Something went wrong. Please try again.</p>
 		);
 	}
 
@@ -37,12 +33,16 @@ function ListOfArticles() {
 
 	return (
 		<>
-		<SearchBar setArticlesList={setArticlesList}/>
-		<ul className="articlesList">
-			{articlesList.length === 0 ? <p>No articles on this topic.</p> : articlesList.map((article) => {
-				return <Article key={article.article_id} article={article} />;
-			})}
-		</ul>
+			<SearchBar setArticlesList={setArticlesList} />
+			<ul className="articlesList">
+				{articlesList.length === 0 ? (
+					<p>No articles on this topic.</p>
+				) : (
+					articlesList.map((article) => {
+						return <Article key={article.article_id} article={article} />;
+					})
+				)}
+			</ul>
 		</>
 	);
 }
