@@ -107,3 +107,9 @@ export const postTopic = (newTopic) => {
 		return res.data.article_posted;
 	});
 };
+
+export const deleteArticleById = (id) => {
+	return baseUrl.delete(`/api/articles/${id}`).then((res) => {
+		return
+	})
+}

@@ -1,7 +1,8 @@
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
-import { getArticlesById, updateVotesByArticleId } from '../api';
+import { getArticlesById, updateVotesByArticleId, deleteArticleById } from '../api';
 import BlogContext from '../contexts/BlogContext';
 import Loading from './Loading';
 import Comments from './Comments';
@@ -14,6 +15,7 @@ function SingleArticle() {
 	const [error, setError] = useState(false);
 	const [userVotes, setUserVotes] = useState(0);
 	const { user } = useContext(BlogContext);
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		getArticlesById(params.article_id)
@@ -39,6 +41,18 @@ function SingleArticle() {
 			setError(false);
 		});
 	};
+
+	const handleDelete = (id) => {
+		setIsLoading(true)
+		deleteArticleById(id).then(() => {
+				setIsLoading(false);
+				window.alert('Your article has been deleted.');
+				navigate('/')
+		}).catch((err) => {
+			setError(true)
+			setIsLoading(false)
+		})
+	}
 
 	if (error) {
 		if (error.message === 'Network Error') {
@@ -74,6 +88,7 @@ function SingleArticle() {
 						Vote 😍
 					</button>
 				) : null}
+			{ user ? <button className="btn" onClick={(e) => { handleDelete(article.article_id)}}>delete article</button> : null}
 			</section>
 			<Comments id={article.article_id} />
 		</>

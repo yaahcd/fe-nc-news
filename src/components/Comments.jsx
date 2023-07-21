@@ -119,7 +119,6 @@ function Comments({ id }) {
 					)}
 					{user ? (
 						<>
-							<label htmlFor="commentBox"></label>
 							<textarea
 								type="text"
 								id="commentBox"
