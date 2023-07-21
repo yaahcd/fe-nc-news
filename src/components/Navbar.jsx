@@ -4,7 +4,9 @@ function Navbar() {
 	return (
 		<>
 			<nav className="navbar">
-			<h1 className="header"> NC News</h1>
+			<Link to="/">
+				<h1 className="header"> NC News</h1>
+			</Link>
 				<ul>
 					<Link to="/">
 						<li>Home</li>
@@ -15,7 +17,7 @@ function Navbar() {
 					<Link to="/">
 						<li>Users</li>
 					</Link>
-					<Link to="/">
+					<Link to="/my_account">
 						<li>My Account</li>
 					</Link>
 				</ul>

@@ -49,6 +49,30 @@ export const postCommentsByArticleId = (id, newComment) => {
 
 export const getTopics = () => {
 	return baseUrl.get('/api/topics').then((res) => {
-		return res.data
-	})
-}
+		return res.data;
+	});
+};
+
+export const getUserByUsername = (username) => {
+	return baseUrl.get(`/api/users/${username}`).then((res) => {
+		return res.data.user;
+	});
+};
+
+export const deleteComment = (id) => {
+	return baseUrl.delete(`/api/comments/${id}`).then((res) => {
+		return;
+	});
+};
+
+export const postUser = (user) => {
+	const body = {
+		username: user.username,
+		name: user.name,
+		avatar_url: user.avatar_url,
+	};
+
+	return baseUrl.post('/api/users', body).then((res) => {
+		return res.data;
+	});
+};

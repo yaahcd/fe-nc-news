@@ -196,13 +196,21 @@ padding: 0;
   padding: 0px 10px;
 }
 
-.postComment {
+.postComment form{
+  display: flex;
   flex-direction: column;
-  padding: 10px;
+  margin-top: 30px;
+  margin-left: 20px;
 }
 
-.postComment input {
-  margin: 5px;
+.postingConfirmation {
+  text-align: center;
+}
+
+#commentBox{
+  height: 200px;
+  width: 400px;
+  margin: 10px 0;
 }
 
 .searchBar {
@@ -235,6 +243,92 @@ padding: 0;
   opacity: 0.9;
 }
 
+.SignInContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.SignInContainer h2{
+  font-size: 50px;
+}
+
+.SignInContainer input{
+  height: 30px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.signInError {
+  margin: 10px;
+  color: rgba(219, 219, 21, 0.943);
+  font-weight: 700;
+}
+
+.SignInContainer p {
+  margin-top: 20px;
+}
+
+.errorMessage{
+  margin:30px;
+  color: rgba(219, 219, 21, 0.943);
+  font-weight: 700;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.userContainer h2, img {
+  padding: 10px;
+}
+
+.userContainer img {
+  height: 300px;
+}
+
+.userContainer button {
+  margin: 10px;
+}
+
+.userHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #778DA9;
+  font-size: large;
+  text-shadow: 0.5px 0.5px 0.5px rgb(139, 149, 207);
+  margin-right: 60px;
+  margin-top: 70px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signUpForm input {
+  height: 30px;
+  width: 300px;
+  margin: 15px;
+}
+
+.signUpForm h2{
+  font-size: 50px;
+}
+
+
+
+
 /* Mobile */
 
 @media(max-width: 768px){
@@ -257,5 +351,9 @@ padding: 0;
     flex-direction: column;
   }
 
+  .articlePageContainer {
+    margin-top: 140px;
+    padding: 10px;
+  }
 
 }

@@ -1,7 +1,8 @@
 import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {toast} from 'react-toastify'
 import { getArticlesById, updateVotesByArticleId } from '../api';
+import BlogContext from '../contexts/BlogContext';
 import Loading from './Loading';
 import Comments from './Comments';
 
@@ -12,6 +13,7 @@ function SingleArticle() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [userVotes, setUserVotes] = useState(0)
+	const { user } = useContext(BlogContext);
 
 	useEffect(() => {
 		getArticlesById(params.article_id)
@@ -34,7 +36,7 @@ function SingleArticle() {
 			setUserVotes((currValue) => {
 				return currValue - 1
 			})
-			setError(err)
+			setError(false)
 		})
 	}
   
@@ -43,9 +45,7 @@ function SingleArticle() {
 			toast.error('No connection')
 		} else {
 		return (
-			<section className="errorMessage">
-				<p>{error.request.status}: {error.response.data.msg}</p>
-			</section>
+				<p className="errorMessage">Something went wrong. Please try again.</p>
 		);
 	}
 	}
@@ -65,7 +65,7 @@ function SingleArticle() {
 				<section className='commentsContainer'>
 				<p className='commentsCount'>Comments: {article.comment_count}</p>
 				<p className='votesCount'>Votes: {article.votes + userVotes}</p>
-				<button className='btn' onClick={handleClick} disabled={userVotes > 0}>Vote 😍</button>
+				{user ? <button className='btn' onClick={handleClick} disabled={userVotes > 0}>Vote 😍</button> : null}
 				</section>
 				<Comments id={article.article_id} />
 				</>
