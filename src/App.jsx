@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import MyAccount from './components/MyAccount';
 import SignIn from './components/SignIn';
 import UserHeader from './components/UserHeader';
+import Signup from './components/Signup';
 import { BlogProvider } from './contexts/BlogContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +25,7 @@ function App() {
 					<Route path="/my_account" element={<MyAccount />} />
 				</Route>
 				<Route path="/sign_in" element={<SignIn/>} />
+				<Route path="/sign_up" element={<Signup />} />
 			</Routes>
 			<ToastContainer />
 		</BlogProvider>

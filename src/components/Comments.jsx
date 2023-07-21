@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { toast } from 'react-toastify';
 import {
 	getCommentsByArticleId,
 	postCommentsByArticleId,
@@ -50,18 +49,26 @@ function Comments({ id }) {
 			});
 	};
 
-	const handleClick = (e) => {
-		const id = e.target.dataset.set;
+	const handleClick = (comment, e) => {
+		e.preventDefault();
+
+		setComments((currValue) => {
+			return currValue.filter((comments) => comments.id !== comment.comment_id);
+		});
+
 		setIsLoading(true);
-		deleteComment(id)
+		deleteComment(comment.comment_id)
 			.then(() => {
 				setDeleteConfirmation(true);
 				setIsLoading(false);
-				window.alert('Your comment has been deleted.')
+				window.alert('Your comment has been deleted.');
 			})
 			.catch((err) => {
 				setIsLoading(false);
 				setError(true);
+				setComments((currValue) => {
+					return [comment, ...currValue];
+				});
 			});
 	};
 
@@ -90,8 +97,9 @@ function Comments({ id }) {
 							{user === comment.author ? (
 								<button
 									className="btn"
-									data-set={comment.comment_id}
-									onClick={handleClick}
+									onClick={(e) => {
+										handleClick(comment, e);
+									}}
 								>
 									delete
 								</button>

@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Loading from './Loading'
 import BlogContext from '../contexts/BlogContext'
 import { getUserByUsername } from '../api'
@@ -39,6 +39,7 @@ function SignIn() {
       <input type="text" placeholder="Please enter your username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
       <button className='btn'>Sign-in</button>
     </form>
+    <p>New here? <Link className="differentColor" to="/sign_up">Sign-up</Link> instead.</p>
     {error ? <p className='signInError'>Invalid Username</p> : null}
     </main>
   )

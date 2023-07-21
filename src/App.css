@@ -267,6 +267,10 @@ padding: 0;
   font-weight: 700;
 }
 
+.SignInContainer p {
+  margin-top: 20px;
+}
+
 .errorMessage{
   margin:30px;
   color: rgba(219, 219, 21, 0.943);
@@ -303,6 +307,25 @@ padding: 0;
   margin-right: 60px;
   margin-top: 70px;
 }
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signUpForm input {
+  height: 30px;
+  width: 300px;
+  margin: 15px;
+}
+
+.signUpForm h2{
+  font-size: 50px;
+}
+
 
 
 

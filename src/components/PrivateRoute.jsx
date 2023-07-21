@@ -5,7 +5,7 @@ import BlogContext from '../contexts/BlogContext';
 function PrivateRoute() {
 	const { user } = useContext(BlogContext);
 
-	return user === window.localStorage.getItem('user') && user ? (
+	return user ? (
 		<Outlet />
 	) : (
 		<Navigate to="/sign_in" />

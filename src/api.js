@@ -64,3 +64,15 @@ export const deleteComment = (id) => {
 		return;
 	});
 };
+
+export const postUser = (user) => {
+	const body = {
+		username: user.username,
+		name: user.name,
+		avatar_url: user.avatar_url,
+	};
+
+	return baseUrl.post('/api/users', body).then((res) => {
+		return res.data;
+	});
+};
