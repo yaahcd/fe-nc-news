@@ -8,6 +8,7 @@ import MyAccount from './components/MyAccount';
 import SignIn from './components/SignIn';
 import UserHeader from './components/UserHeader';
 import Signup from './components/Signup';
+import InvalidPath from './components/InvalidPath';
 import { BlogProvider } from './contexts/BlogContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,6 +31,7 @@ function App() {
 				<Route path="/sign_up" element={<Signup />} />
 				<Route path="/users" element={<UserList />} />
 				<Route path="/post_article" element={<PostArticle />} />
+				<Route path="*" element={<InvalidPath />} />
 			</Routes>
 			<ToastContainer />
 		</BlogProvider>
