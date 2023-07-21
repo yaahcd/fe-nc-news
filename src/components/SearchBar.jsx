@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { getArticles, getTopics } from '../api';
+import { useFetcher, useSearchParams } from 'react-router-dom';
 import Loading from './Loading';
 
 function SearchBar({ setArticlesList }) {
 	const [topicsList, setTopicsList] = useState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [params, setParams] = useState(searchParams)
 
 	useEffect(() => {
 		setError(false);
@@ -20,15 +23,22 @@ function SearchBar({ setArticlesList }) {
 			});
 	}, []);
 
+	useEffect(() => {
+		setSearchParams(params)
+	}, [params])
+
 	const handleSubmit = (e) => {
-		
 		e.preventDefault();
 
-		let topic = e.target[0].value 
-		let sortby =  e.target[1].value
-		let order = e.target[2].value
+		const params = {
+			topic: e.target[0].value,
+			sort: e.target[1].value,
+			order: e.target[2].value
+		}
+	
+		setParams({...params})
 
-		getArticles(topic, sortby, order)
+		getArticles(params.topic, params.sort, params.order)
 			.then(({ articles }) => {
 				setArticlesList(articles);
 				setIsLoading(false);
