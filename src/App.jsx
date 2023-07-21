@@ -12,6 +12,7 @@ import InvalidPath from './components/InvalidPath';
 import { BlogProvider } from './contexts/BlogContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserList from './components/UserList';
 
 function App() {
 

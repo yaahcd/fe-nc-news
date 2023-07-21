@@ -325,7 +325,29 @@ padding: 0;
   font-size: 50px;
 }
 
+.usersList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  margin-top: 70px ;
+}
+ .userItem{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1B263B;
+  width: 350px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+ }
 
+ .userItem img{
+  height: 300px;
+ }
 
 
 /* Mobile */
