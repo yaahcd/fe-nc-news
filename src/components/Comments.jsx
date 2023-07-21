@@ -49,7 +49,6 @@ function Comments({ id }) {
 
 		const handleClick = (e) => {
 		const id = e.target.dataset.set;
-			
 		setIsLoading(true);
 		deleteComment(id).then(() => {
 			setDeleteConfirmation(true)
@@ -124,7 +123,7 @@ function Comments({ id }) {
 						</>
 					) : null}
 				</form>
-				{postConfirmation ? <p>Your comment has been posted.</p> : null}
+				{postConfirmation ? <p className='postingConfirmation'>Your comment has been posted.</p> : null}
 			</section>
 		</main>
 	);

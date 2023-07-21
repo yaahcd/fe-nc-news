@@ -203,6 +203,10 @@ padding: 0;
   margin-left: 20px;
 }
 
+.postingConfirmation {
+  text-align: center;
+}
+
 #commentBox{
   height: 200px;
   width: 400px;
@@ -283,6 +287,19 @@ padding: 0;
   margin: 10px;
 }
 
+.userHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #778DA9;
+  font-size: large;
+  text-shadow: 0.5px 0.5px 0.5px rgb(139, 149, 207);
+  margin-right: 60px;
+  margin-top: 70px;
+}
+
+
+
 /* Mobile */
 
 @media(max-width: 768px){
@@ -305,5 +322,8 @@ padding: 0;
     flex-direction: column;
   }
 
+  .articlePageContainer {
+    margin-top: 80px;
+  }
 
 }
