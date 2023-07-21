@@ -132,7 +132,7 @@ function Comments({ id }) {
 								}
 								required
 							/>
-							<button className="btn" disabled={postConfirmation}>
+							<button className="btn">
 								add comment
 							</button>{' '}
 						</>

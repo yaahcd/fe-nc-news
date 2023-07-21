@@ -76,3 +76,9 @@ export const postUser = (user) => {
 		return res.data;
 	});
 };
+
+export const getUsers = () => {
+	return baseUrl.get('/api/users').then((res) => {
+		return res.data;
+	});
+}

@@ -11,6 +11,7 @@ import Signup from './components/Signup';
 import { BlogProvider } from './contexts/BlogContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserList from './components/UserList';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
 				</Route>
 				<Route path="/sign_in" element={<SignIn/>} />
 				<Route path="/sign_up" element={<Signup />} />
+				<Route path="/users" element={<UserList />} />
 			</Routes>
 			<ToastContainer />
 		</BlogProvider>
