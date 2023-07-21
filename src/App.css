@@ -323,7 +323,8 @@ padding: 0;
   }
 
   .articlePageContainer {
-    margin-top: 80px;
+    margin-top: 140px;
+    padding: 10px;
   }
 
 }
