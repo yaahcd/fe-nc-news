@@ -17,7 +17,7 @@ function Comments({ id }) {
 		body: '',
 	});
 	const [postConfirmation, setPostConfirmation] = useState(false);
-	const [deleteConfirmation, setDeleteConfirmation] = useState(false)
+	const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 	const { user } = useContext(BlogContext);
 
 	useEffect(() => {
@@ -36,34 +36,39 @@ function Comments({ id }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		setIsLoading(true);
 		newComment.username = user;
 		postCommentsByArticleId(id, newComment)
 			.then((addedComment) => {
+				setIsLoading(false);
 				setComments([addedComment[0], ...comments]);
 				setPostConfirmation(true);
 			})
 			.catch((err) => {
 				setError(true);
+				setIsLoading(false);
 			});
 	};
 
-		const handleClick = (e) => {
+	const handleClick = (e) => {
 		const id = e.target.dataset.set;
 		setIsLoading(true);
-		deleteComment(id).then(() => {
-			setDeleteConfirmation(true)
-			setIsLoading(false);
-			toast.success('Your comment has been deleted')
-		}).catch((err) => {
-			setError(true)
-			setIsLoading(false)
-		})
+		deleteComment(id)
+			.then(() => {
+				setDeleteConfirmation(true);
+				setIsLoading(false);
+				window.alert('Your comment has been deleted.')
+			})
+			.catch((err) => {
+				setIsLoading(false);
+				setError(true);
+			});
 	};
 
 	if (error) {
-			return (
-				<p className="errorMessage">Something went wrong. Please try again.</p>
-			);
+		return (
+			<p className="errorMessage">Something went wrong. Please try again.</p>
+		);
 	}
 
 	if (isLoading) {
@@ -100,7 +105,9 @@ function Comments({ id }) {
 					{user ? (
 						<h4>You are logged in as: {user}</h4>
 					) : (
-						<p className='signInError'>Only users can comment. Please sign-in.</p>
+						<p className="signInError">
+							Only users can comment. Please sign-in.
+						</p>
 					)}
 					{user ? (
 						<>
@@ -123,7 +130,9 @@ function Comments({ id }) {
 						</>
 					) : null}
 				</form>
-				{postConfirmation ? <p className='postingConfirmation'>Your comment has been posted.</p> : null}
+				{postConfirmation ? (
+					<p className="postingConfirmation">Your comment has been posted.</p>
+				) : null}
 			</section>
 		</main>
 	);

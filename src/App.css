@@ -267,6 +267,12 @@ padding: 0;
   font-weight: 700;
 }
 
+.errorMessage{
+  margin:30px;
+  color: rgba(219, 219, 21, 0.943);
+  font-weight: 700;
+}
+
 .userContainer {
   display: flex;
   flex-direction: column;
