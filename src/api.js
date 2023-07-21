@@ -81,4 +81,29 @@ export const getUsers = () => {
 	return baseUrl.get('/api/users').then((res) => {
 		return res.data;
 	});
-}
+};
+
+export const postArticle = (newArticle) => {
+	const body = {
+		title: newArticle.title,
+		topic: newArticle.topic,
+		body: newArticle.body,
+		article_img_url: newArticle.article_img_url,
+		author: newArticle.author,
+	};
+
+	return baseUrl.post('/api/articles', body).then((res) => {
+		return res.data;
+	});
+};
+
+export const postTopic = (newTopic) => {
+	const body = {
+		slug: newTopic,
+		description: newTopic,
+	};
+
+	return baseUrl.post('/api/topics', body).then((res) => {
+		return res.data;
+	});
+};

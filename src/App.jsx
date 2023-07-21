@@ -12,6 +12,7 @@ import { BlogProvider } from './contexts/BlogContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserList from './components/UserList';
+import PostArticle from './components/PostArticle';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
 				<Route path="/sign_in" element={<SignIn/>} />
 				<Route path="/sign_up" element={<Signup />} />
 				<Route path="/users" element={<UserList />} />
+				<Route path="/post_article" element={<PostArticle />} />
 			</Routes>
 			<ToastContainer />
 		</BlogProvider>

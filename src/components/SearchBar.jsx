@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getArticles, getTopics } from '../api';
-import { useFetcher, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Loading from './Loading';
+import PostArticle from './PostArticle';
 
 function SearchBar({ setArticlesList }) {
 	const [topicsList, setTopicsList] = useState();
@@ -60,6 +61,7 @@ function SearchBar({ setArticlesList }) {
 	}
 
 	return (
+		<>
 		<form onSubmit={handleSubmit} className="searchBar">
 			<section className="topicSection">
 				<label htmlFor="">Topics:</label>
@@ -96,6 +98,7 @@ function SearchBar({ setArticlesList }) {
 
 			<button className="btn">Filter</button>
 		</form>
+	</>
 	);
 }
 

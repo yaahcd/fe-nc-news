@@ -332,7 +332,7 @@ padding: 0;
   justify-content: center;
   text-align: center;
   height: 100%;
-  margin-top: 70px ;
+  margin-top: 85px;
 }
  .userItem{
   display: flex;
@@ -348,7 +348,42 @@ padding: 0;
  .userItem img{
   height: 300px;
  }
+ 
+ .postArticleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+ }
+ .postArticleContainer input{
+  display: flex;
+ }
 
+ .postArticleContainer input {
+  height: 30px;
+  width: 300px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.postArticleContainer label {
+ display: flex;
+ margin: 0 10px;
+}
+
+.postArticleContainer textarea {
+  height: 300px;
+  width: 300px;
+  margin: 0 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.postArticleContainer h2{
+  font-size: 50px;
+}
 
 /* Mobile */
 
