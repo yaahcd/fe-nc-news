@@ -19,16 +19,14 @@ const navigate = useNavigate();
 
 const handleSubmit = (e) => {
   e.preventDefault()
-
+  setIsLoading(true)
 postUser(newUser).then(({postedUser}) => {
-  console.log(postedUser[0])
   setIsLoading(false)
   setUser(postedUser[0].username)
   navigate("/my_account")
 }).catch((err) => {
   setError(true)
   setIsLoading(false)
-  console.log(err)
 })
 }
 
