@@ -45,9 +45,9 @@ function PostArticle() {
       })
     }
 
-    postArticle(newPost).then((postedArticle) => {
+    postArticle(newPost).then(({article_posted}) => {
       setIsLoading(false)
-      navigate(`/articles/${postedArticle.article_id}`)
+      navigate(`/articles/${article_posted[0].article_id}`)
     }).catch((err) => {
       setError(true)
       setIsLoading(false)
@@ -113,7 +113,6 @@ function PostArticle() {
 							return { ...newPost, article_img_url: e.target.value };
 						})
 					}
-					required
 				/>
 				<button className="btn">Post</button>
 			</form>

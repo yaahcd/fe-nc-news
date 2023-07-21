@@ -104,6 +104,6 @@ export const postTopic = (newTopic) => {
 	};
 
 	return baseUrl.post('/api/topics', body).then((res) => {
-		return res.data;
+		return res.data.article_posted;
 	});
 };

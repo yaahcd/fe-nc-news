@@ -385,6 +385,14 @@ padding: 0;
   font-size: 50px;
 }
 
+.PostArticleError {
+  color: rgba(219, 219, 21, 0.943);
+  font-weight: 700;
+  margin-top: 120px;
+  margin-left: 50px;
+  height: 100vh;
+}
+
 /* Mobile */
 
 @media(max-width: 768px){
