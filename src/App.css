@@ -770,14 +770,14 @@ img {
   font-weight: bold;
   color: #d90429;
   width: fit-content;
-  webkit-animation: jello-horizontal 0.9s both;
+  -webkit-animation: jello-horizontal 0.9s both;
   animation: jello-horizontal 0.9s both;
 }
 
 .usernameError {
   font-weight: bold;
   color: #d90429;
-  webkit-animation: jello-horizontal 0.9s both;
+  -webkit-animation: jello-horizontal 0.9s both;
   animation: jello-horizontal 0.9s both;
 }
 
