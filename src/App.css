@@ -453,7 +453,7 @@ main {
 
 }
 
-.likeButton {
+.likeButton, .clickedLikeButton{
   grid-area: likeButton;
   grid-column-start: 4;
   grid-column-end: 4;
@@ -466,7 +466,7 @@ main {
   align-self: center;
 }
 
-.dislikeButton {
+.dislikeButton, .clickedDislikeButton {
   grid-area: dislikeButton;
   grid-column-start: 5;
   grid-column-end: 5;
@@ -1157,12 +1157,12 @@ img {
     grid-column-end: 5;
   }
 
-  .likeButton {
+  .likeButton, .clickedLikeButton {
     grid-column-start: 3;
     grid-column-end: 4;
   }
 
-  .dislikeButton {
+  .dislikeButton, .clickedDislikeButton {
     grid-column-start: 4;
     grid-column-end: 5;
   }
@@ -1274,12 +1274,12 @@ img {
     grid-column-end: 5;
   }
 
-  .likeButton {
+  .likeButton, .clickedLikeButton {
     grid-column-start: 3;
     grid-column-end: 4;
   }
 
-  .dislikeButton {
+  .dislikeButton, .clickedDislikeButton {
     grid-column-start: 4;
     grid-column-end: 5;
   }
@@ -1293,9 +1293,9 @@ img {
   }
 }
 
-@media (min-width: 1850px) {
+@media (min-width: 1950px) {
   .commentCardWrapper {
-    grid-template-columns: 4fr 1fr 0.1fr 0.1fr;
+    grid-template-columns: 4fr 1fr 0.2fr 0.2fr;
   }
 
   .commentBody {
@@ -1309,14 +1309,14 @@ img {
     grid-column-end: 5;
   }
 
-  .likeButton {
+  .likeButton, .clickedLikeButton {
     margin: auto;
     align-self: center;
     grid-column-start: 3;
     grid-column-end: 4;
   }
 
-  .dislikeButton {
+  .dislikeButton, .clickedDislikeButton {
     margin: auto;
     align-self: center;
     grid-column-start: 4;

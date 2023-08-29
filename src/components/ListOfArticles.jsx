@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { useSearchParams } from "react-router-dom";
 import Error from "./Error";
-import SingleArticle from "./ArticleItem";
+import SingleArticle from "./Article";
 import SearchBar from "./SearchBar";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -16,7 +16,6 @@ function ListOfArticles() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [error, setError] = useState(false);
   const [pageChange, setPageChange] = useState(false)
-  const [resetFilter, setResetFilter] = useState(false)
   const lightTheme = useSelector((state) => state.themeKey);
   let page = searchParams.get("p");
 

@@ -1,19 +1,28 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { PageProvider } from "./context/PageContext";
-import ListOfArticles from "./components/ListOfArticles";
+import ListOfArticles from "./components/ListOfArticles"
 import SingleArticle from "./components/SingleArticle";
 import InvalidPath from './components/InvalidPath';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import SignIn from "./components/SignIn";
 import MyAccount from "./components/MyAccount";
-import SignUp from "./components/SignUp";
-import PostArticle from "./components/PostArticles";
+import PostArticle from "./components/PostArticle";
+import SignUp from "./components/Signup";
+import { useEffect } from "react";
 
 
 function App() {
+
+
+
+
+  useEffect(() =>  {
+    
+  }, [])
+
   return (
     <PageProvider>
       <Navbar />

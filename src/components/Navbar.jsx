@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from "../assets/ncnewslogo.png";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../features/themeSlice";
 import PageContext from "../context/PageContext";
+
 
 function Navbar() {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ function Navbar() {
   } else {
     document.getElementById("themeToggle").className = "";
   }
+
+  
 
   return (
     <>
@@ -34,7 +37,7 @@ function Navbar() {
         <IconButton
           className={"themeButton" + (lightTheme ? "" : " dark")}
           onClick={() => {
-            dispatch(toggleTheme());
+            dispatch(toggleTheme())
           }}
         >
           {lightTheme && <LightModeIcon />}
