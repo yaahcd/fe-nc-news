@@ -11,20 +11,22 @@ import SignIn from "./components/SignIn";
 import MyAccount from "./components/MyAccount";
 import PostArticle from "./components/PostArticle";
 import SignUp from "./components/Signup";
-import { useEffect } from "react";
-
+import { useEffect, useContext } from "react";
+import PageContext from "./context/PageContext";
 
 function App() {
 
-
-
+  const { user, setUser } = useContext(PageContext);
 
   useEffect(() =>  {
-    
+   const activeUser = localStorage.getItem("user")
+   if(activeUser){
+    setUser(activeUser)
+   }
   }, [])
 
   return (
-    <PageProvider>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<ListOfArticles />} />
@@ -38,7 +40,7 @@ function App() {
         <Route path="/post_article" element={<PostArticle />} />
       </Routes>
       <Footer/>
-    </PageProvider>
+    </>
   );
 }
 
