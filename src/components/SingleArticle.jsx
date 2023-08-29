@@ -1,98 +1,135 @@
-import { useParams } from 'react-router';
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
-import { toast } from 'react-toastify';
-import { getArticlesById, updateVotesByArticleId, deleteArticleById } from '../api';
-import BlogContext from '../contexts/BlogContext';
-import Loading from './Loading';
-import Comments from './Comments';
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {
+  getArticlesById,
+  updateVotesByArticleId,
+  deleteArticleById,
+} from "../api";
+import Comments from "./Comments";
+import { Button } from "@mui/material";
+import Loading from "./Loading";
+import { useSelector } from "react-redux";
+import Error from "./Error";
+import PageContext from "../context/PageContext";
 
 function SingleArticle() {
-	const params = useParams();
+  const params = useParams();
+  const [article, setArticle] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [userVotes, setUserVotes] = useState(0);
+  const [clickedFavorite, setClickedFavorite] = useState(false);
+  const { user } = useContext(PageContext);
+  const navigate = useNavigate();
+  const lightTheme = useSelector((state) => state.themeKey);
 
-	const [article, setArticle] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState(false);
-	const [userVotes, setUserVotes] = useState(0);
-	const { user } = useContext(BlogContext);
-	const navigate = useNavigate()
+  useEffect(() => {
+    getArticlesById(params.article_id)
+      .then((article) => {
+        const date = new Date(article[0].created_at);
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+          date
+        );
+        article[0].created_at = formattedDate;
+        setArticle(article[0]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(true);
+        setIsLoading(false);
+      });
+  }, []);
 
-	useEffect(() => {
-		getArticlesById(params.article_id)
-			.then((article) => {
-				setArticle(article[0]);
-				setIsLoading(false);
-			})
-			.catch((err) => {
-				setError(err);
-				setIsLoading(false);
-			});
-	}, []);
+  const handleClick = () => {
+    setClickedFavorite(true);
+    setUserVotes((currValue) => {
+      return currValue + 1;
+    });
+    updateVotesByArticleId(params.article_id)
+    .catch((err) => {
+      setUserVotes((currValue) => {
+        return currValue - 1;
+      });
+      setError(true);
+    });
+  };
 
-	const handleClick = () => {
-		setUserVotes((currValue) => {
-			return currValue + 1;
-		});
+  const handleDelete = (id) => {
+    setIsLoading(true);
+    deleteArticleById(id)
+      .then(() => {
+        setIsLoading(false);
+        window.alert("Your article has been deleted.");
+        navigate("/");
+      })
+      .catch((err) => {
+        setError(true);
+        setIsLoading(false);
+      });
+  };
 
-		updateVotesByArticleId(params.article_id).catch((err) => {
-			setUserVotes((currValue) => {
-				return currValue - 1;
-			});
-			setError(false);
-		});
-	};
+  if (error) {
+    return <Error />;
+  }
 
-	const handleDelete = (id) => {
-		setIsLoading(true)
-		deleteArticleById(id).then(() => {
-				setIsLoading(false);
-				window.alert('Your article has been deleted.');
-				navigate('/')
-		}).catch((err) => {
-			setError(true)
-			setIsLoading(false)
-		})
-	}
+  if (isLoading) {
+    return <Loading />;
+  }
 
-	if (error) {
-		if (error.message === 'Network Error') {
-			toast.error('No connection');
-		} else {
-			return (
-				<p className="errorMessage">Something went wrong. Please try again.</p>
-			);
-		}
-	}
+  return (
+    <main>
+      { user === article.author ?
+        <section className="deleteArticleButton">
+        {
+          <Button
+            size="small"
+            variant="contained"
+            className="btn"
+            sx={{
+              color: "white",
+              backgroundColor: "grey",
+              height: "25px",
+              borderRadius: "15px",
+              ":hover": { backgroundColor: "#D90429" },
+            }}
+            onClick={(e) => {
+              handleDelete(article.article_id);
+            }}
+          >
+            delete my article
+          </Button>
+        }
+      </section> : null}
 
-	if (isLoading) {
-		return <Loading />;
-	}
-	return (
-		<>
-			<ul className="articlePageContainer">
-				<h2>{article.title}</h2>
-				<h3>Written by {article.author}</h3>
-				<img src={article.article_img_url} alt="" />
-				<p>{article.body}</p>
-			</ul>
+      <section className={"articlePageContainer" + (lightTheme ? "" : " dark")}>
+        <p className="dateHeader">{`${article.created_at}, posted by ${article.author}`}</p>
+        <h2>{article.title}</h2>
+        <img src={article.article_img_url} alt={`Image for ${article.title}`} />
+        <p>{article.body}</p>
+      </section>
 
-			<section className="commentsContainer">
-				<p className="commentsCount">Comments: {article.comment_count}</p>
-				<p className="votesCount">Votes: {article.votes + userVotes}</p>
-				{user ? (
-					<button
-						className="btn"
-						onClick={handleClick}
-						disabled={userVotes > 0}
-					>
-						Vote 😍
-					</button>
-				) : null}
-			{ user ? <button className="btn" onClick={(e) => { handleDelete(article.article_id)}}>delete article</button> : null}
-			</section>
-			<Comments id={article.article_id} />
-		</>
-	);
+      <section className={"articlePageVotes" + (lightTheme ? "" : " dark")}>
+        <button onClick={handleClick} disabled={userVotes > 0}>
+          {clickedFavorite ? (
+            <FavoriteIcon
+              className={"articlePageLikeButton" + (lightTheme ? "" : " dark")}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              className={"articlePageLikeButton" + (lightTheme ? "" : " dark")}
+            />
+          )}
+        </button>
+        <p>{article.votes + userVotes}</p>
+      </section>
+
+      <Comments id={article.article_id} />
+    </main>
+  );
 }
 
 export default SingleArticle;
