@@ -1,7 +1,7 @@
+import Error from "./Error";
+
 function InvalidPath() {
-  return (
-      <p className="errorMessage">Invalid path.</p>
-  )
+  return <Error message={'Invalid Path'} />;
 }
 
-export default InvalidPath
+export default InvalidPath;
