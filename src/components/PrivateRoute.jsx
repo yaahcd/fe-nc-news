@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useContext, useState } from 'react';
-import BlogContext from '../contexts/BlogContext';
+import { useContext } from 'react';
+import PageContext from "../context/PageContext";
 
 function PrivateRoute() {
-	const { user } = useContext(BlogContext);
+	const { user } = useContext(PageContext);
 
 	return user ? (
 		<Outlet />
