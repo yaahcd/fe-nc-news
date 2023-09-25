@@ -1,7 +1,7 @@
 Northcoders News Front-end
 
 Here is a link to this front-end project that is being hosted in netlify: https://yarasncnewsfe.netlify.app/.
-Here is a link to the back-end version of this project that is being hosted in render: https://newsbe.onrender.com/.
+Here is a link to the back-end version of this project that is being hosted in render: https://newsbe.onrender.com/api.
 Here is a link to this project's back-end repo: https://github.com/yaahcd/be-nc-news.
 
 This project runs a blog themed APP that allows users to interact with articles that have been posted by commenting and voting. It also allows users to filter and sort articles as well as delete comments that they have posted.
