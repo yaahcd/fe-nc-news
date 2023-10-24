@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { useSearchParams } from "react-router-dom";
 import Error from "./Error";
-import SingleArticle from "./Article";
+import Article from "./Article";
 import SearchBar from "./SearchBar";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -82,7 +82,7 @@ function ListOfArticles() {
         ) : (
           articlesList.map((article, index) => {
             return (
-              <SingleArticle
+              <Article
                 key={index}
                 article={article}
                 date={article.created_at}
